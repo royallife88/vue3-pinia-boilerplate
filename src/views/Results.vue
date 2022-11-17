@@ -1,9 +1,10 @@
 <template>
   <div class="col-md-12 text-center mt-4">
-    <h3>Search Results</h3>
+    <h2>Search Book title</h2>
+    <Search />
   </div>
 
-  <div class="col-md-12 text-center">
+  <div class="col-md-12 text-center" v-if="!loading">
     <div class="row">
       <div
         class="card m-2"
@@ -22,11 +23,15 @@
 <script>
 import { mapState } from "pinia";
 import { bookStore } from "@/stores/index.js";
+import Search from "@/components/Search.vue";
 
 export default {
   name: "Results",
   computed: {
-    ...mapState(bookStore, ["books"]),
+    ...mapState(bookStore, ["books", "loading"]),
+  },
+  components: {
+    Search,
   },
 };
 </script>
